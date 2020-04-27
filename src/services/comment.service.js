@@ -1,5 +1,5 @@
 const BaseService = require("./base.service")
-const _commentRepository = null,
+let _commentRepository = null,
   _ideaRepository = null
 
 class CommentService extends BaseService {
