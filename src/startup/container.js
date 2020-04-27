@@ -20,6 +20,9 @@ const { UserModel, IdeaModel, CommentModel } = require("../models")
 //repositories
 const { UserRepository, IdeaRepository, CommentRepository } = require("../repositories")
 
+//services
+const { UserService, IdeaService, CommentService } = require("../services")
+
 const container = createContainer()
 
 container
@@ -29,7 +32,10 @@ container
     config: asValue(config)
   })
   .register({
-    HomeService: asClass(HomeService).singleton()
+    HomeService: asClass(HomeService).singleton(),
+    UserService: asClass(UserService).singleton(),
+    IdeaService: asClass(IdeaService).singleton(),
+    CommentService: asClass(CommentService).singleton()
   })
   .register({
     HomeController: asClass(HomeController.bind(HomeController)).singleton()
