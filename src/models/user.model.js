@@ -14,13 +14,13 @@ UserSchema.methods.toJSON = function () {
   return user
 }
 
-UserSchema.methods.comparePassword = function (password) {
+UserSchema.methods.comparePasswords = function (password) {
   return compareSync(password, this.password)
 }
 
 UserSchema.pre("save", async function (next) {
   const user = this
-  if (user.isModified("password")) return next()
+  if (!user.isModified("password")) return next()
 
   const salt = genSaltSync(10)
   const hashedPassword = hashSync(user.password, salt)
